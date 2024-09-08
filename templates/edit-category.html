@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Post
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit Category</h1><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Edit Category Name</th>
+      <th scope="col">Delete Category</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for category in categories %}
+    <tr>
+      <th scope="row">{{ category.id }}</th>
+      <td>{{category.name}}</td>
+    <td><form method="post">
+         <input type="hidden" id="category_id" name="category_id" value="{{category.id}}">
+        <textarea name="title" id="title" rows="1" cols="20">{{category.name}}</textarea><br>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</td>
+
+    <td>
+      <form action="edit-category/delete/{{ category.id }}">
+
+    <input type="submit" value="Delete Category">
+    </form>
+    </td>
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

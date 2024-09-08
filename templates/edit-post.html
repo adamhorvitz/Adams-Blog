@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit {{ post.title }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit Post</h1>
+<form method="post">
+  <label for="title">Title:</label><br>
+  <input type="text" id="title" name="title" value="{{ post.title }}"><br>
+  <label for="Subtitle">Subtitle:</label><br>
+  <input type="text" id="subtitle" name="subtitle" value="{{ post.subtitle }}"><br><br>
+<label for="body">Body:</label><br>
+    <textarea name="body" rows="10" cols="60">{{ post.body }}</textarea><br>
+  <input type="submit" value="Save"><br><br>
+
+
+<label for="categories">Category:</label>
+<input list="categories" name="category" value="{{ post.category.name }}">
+  <datalist id="categories">
+    {% for category in categories %}
+      <option value="{{category.name}}">
+    {% endfor %}
+  </datalist>
+</form><br>
+
+<form action="delete">
+    <input type="submit" value="Delete Post">
+</form>
+
+{% endblock %}
